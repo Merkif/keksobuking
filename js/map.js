@@ -113,6 +113,20 @@ const showNoResultsPopup = (map) => {
     .openOn(map);
 };
 
+//update map view
+const updateMapView = (map, points) => {
+  if (points.length > 0) {
+    const bounds = leaflet.latLngBounds(points.map(point => [point.location.lat, point.location.lng]));
+    map.fitBounds(bounds,
+      {
+        padding: [40, 40],
+        animate: true,
+        duration: 1,
+      },
+    );
+  }
+};
+
 //filter
 const applyFilters = (points, filters) => {
   return points.filter(({ offer }) => {
@@ -162,7 +176,11 @@ const filterPoints = (map, points) => {
   //create new filtered markers
   filteredPoints.length === 0
     ? showNoResultsPopup(map)
-    : (map.closePopup(), createMarkers(map, filteredPoints.slice(0, MAP_CONFIG.maxPinCount), MAP_CONFIG));
+    : (
+      map.closePopup(),
+      createMarkers(map, filteredPoints.slice(0, MAP_CONFIG.maxPinCount), MAP_CONFIG),
+      updateMapView(map, filteredPoints)
+    );
 };
 
 //wrapper for filter points with debounce

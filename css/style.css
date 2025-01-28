@@ -295,7 +295,6 @@ fieldset {
   align-items: center;
 
   margin-right: 10px;
-  padding: 0 15px;
 
   width: 70px;
   height: 70px;
@@ -304,6 +303,16 @@ fieldset {
 
   border-radius: 5px;
   background-color: #dadada;
+
+  aspect-ratio: 1/1;
+}
+
+.ad-form-header__preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: inherit;
 }
 
 .ad-form__field {
@@ -575,6 +584,12 @@ fieldset {
   box-shadow: 0 0 2px 2px #ff6547;
 }
 
+.ad-form__drop-zone.drag-over,
+.ad-form-header__drop-zone.drag-over {
+  color: #ff5635;
+  border-color: currentColor;
+}
+
 .ad-form__photo {
   margin-right: 10px;
   margin-bottom: 10px;
@@ -584,6 +599,14 @@ fieldset {
 
   background-color: #e4e4de;
   border-radius: 5px;
+  overflow: hidden;
+}
+
+.ad-form__photo img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 .ad-form__element--submit {

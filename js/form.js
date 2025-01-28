@@ -2,6 +2,7 @@ import { synchronizeFields } from './util.js';
 import { validateInput, createLengthValidator, createPriceValidator, syncRoomsAndGuests } from './form-validity.js';
 import { sendData } from './create-fetch.js';
 import { showErrorMessage, showSuccessMessage } from './message.js';
+import avatar from './avatar.js';
 
 const MIN_TITLE_LENGTH = 30;
 const MAX_TITLE_LENGTH = 100;
@@ -101,5 +102,34 @@ adForm.addEventListener('submit', (evt) => {
 
 //set adress input state
 addressInput.readOnly = true;
+
+//preview avatar
+new avatar({
+  inputSelector: '.ad-form-header__input',
+  previewSelector: '.ad-form-header__preview',
+  dropAreaSelector:'.ad-form-header__drop-zone',
+  types: ['image/jpg', 'image/png', 'image/jpeg'],
+  dragAndDropEnabled: true,
+  maxFileSizeMB: 1,
+  previewOptions: {
+    alt: 'Аватар пользователя',
+    width: 40,
+    height: 40,
+  },
+});
+
+new avatar({
+  inputSelector: '.ad-form__input',
+  previewSelector: '.ad-form__photo',
+  dropAreaSelector:'.ad-form__drop-zone',
+  types: ['image/jpg', 'image/png', 'image/jpeg'],
+  dragAndDropEnabled: true,
+  maxFileSizeMB: 1,
+  previewOptions: {
+    alt: 'Preview of uploaded file',
+    width: 70,
+    height: 70,
+  },
+});
 
 export { adForm, filterForm, addressInput, housingTypeSelect, housingPriceSelect, housingRoomsSelect, housingGuestsSelect };
